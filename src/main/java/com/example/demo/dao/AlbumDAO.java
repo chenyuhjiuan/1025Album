@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.model.Album;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ private List<Album> albumList;
 
 public List<Album> getAlbumList() {
     Album album1 = new Album();
+    //album1.getId();
     album1.setAlbumName("Guitar1");
     album1.setAlbumTitle("Album Title1");
     album1.setAlbumCategory("Instrument");
@@ -22,7 +24,9 @@ public List<Album> getAlbumList() {
     album1.setUnitInStock(11);
     album1.setAlbumManufacturer("Fender");
 
+
     Album album2 = new Album();
+    album2.getId();
     album2.setAlbumName("Record1");
     album2.setAlbumTitle("Album Title2");
     album2.setAlbumCategory("Record");
@@ -34,6 +38,7 @@ public List<Album> getAlbumList() {
     album2.setAlbumManufacturer("EMI");
 
     Album album3 = new Album();
+    album3.getId();
     album3.setAlbumName("Speaker1");
     album3.setAlbumTitle("Album Title3");
     album3.setAlbumCategory("Accessory");
@@ -52,4 +57,16 @@ public List<Album> getAlbumList() {
 
     return albumList;
 }
+
+ public Album getAlbumById(Long id) throws IOException {
+        for (Album album: getAlbumList()) {
+            if(album.getId().equals(id)) {
+                return album;
+            }
+        }
+
+        throw new IOException("No product found.");
+
+    }
+
 }

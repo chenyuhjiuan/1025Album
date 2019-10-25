@@ -117,4 +117,6 @@ public class Album {
     public void setAlbumManufacturer(String albumManufacturer) {
         this.albumManufacturer = albumManufacturer;
     }
+
+
 }
