@@ -13,6 +13,7 @@ private List<Album> albumList;
 public List<Album> getAlbumList() {
     Album album1 = new Album();
     album1.setAlbumName("Guitar1");
+    album1.setAlbumTitle("Album Title1");
     album1.setAlbumCategory("Instrument");
     album1.setAlbumDescription("This is a fender strat guitar!");
     album1.setAlbumPrice(1200);
@@ -23,6 +24,7 @@ public List<Album> getAlbumList() {
 
     Album album2 = new Album();
     album2.setAlbumName("Record1");
+    album2.setAlbumTitle("Album Title2");
     album2.setAlbumCategory("Record");
     album2.setAlbumDescription("This is an awesome mix of 20th century!");
     album2.setAlbumPrice(25);
@@ -33,6 +35,7 @@ public List<Album> getAlbumList() {
 
     Album album3 = new Album();
     album3.setAlbumName("Speaker1");
+    album3.setAlbumTitle("Album Title3");
     album3.setAlbumCategory("Accessory");
     album3.setAlbumDescription("This is a Polk Shelf Speaker!");
     album3.setAlbumPrice(355);

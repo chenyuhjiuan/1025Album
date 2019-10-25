@@ -10,6 +10,9 @@ public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String albumTitle;
+    private String artisteName;
+    private String genre;
     private String albumName;
     private String albumCategory;
     private String albumDescription;
@@ -25,6 +28,30 @@ public class Album {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAlbumTitle() {
+        return albumTitle;
+    }
+
+    public void setAlbumTitle(String albumTitle) {
+        this.albumTitle = albumTitle;
+    }
+
+    public String getArtisteName() {
+        return artisteName;
+    }
+
+    public void setArtisteName(String artisteName) {
+        this.artisteName = artisteName;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getAlbumName() {
