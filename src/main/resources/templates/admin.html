@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:replace="base::head-head"></div>
+
+
 
 
 <div class="container-wrapper">
@@ -9,11 +14,11 @@
         </div>
 
         <h3>
-            <a href="<c:url value="/admin/productInventory" />" >Product Inventory</a>
+            <a th:href="@{/admin/albumInventory}" >Album Inventory</a>
         </h3>
 
-        <p>Here you can view, check and modify the product inventory!</p>
+        <p>Here you can view, check and modify the album inventory!</p>
 
 
-        <%@include file="/WEB-INF/views/template/footer.jsp" %>
+
 

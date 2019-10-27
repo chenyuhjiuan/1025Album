@@ -13,14 +13,13 @@ public class Album {
     private String albumTitle;
     private String artisteName;
     private String genre;
-    private String albumName;
     private String albumCategory;
-    private String albumDescription;
-    private double albumPrice;
     private String albumCondition;
     private String albumStatus;
+    private double albumPrice;
     private int unitInStock;
     private String albumManufacturer;
+    private String albumDescription;
 
     public Long getId() {
         return id;
@@ -54,13 +53,6 @@ public class Album {
         this.genre = genre;
     }
 
-    public String getAlbumName() {
-        return albumName;
-    }
-
-    public void setAlbumName(String albumName) {
-        this.albumName = albumName;
-    }
 
     public String getAlbumCategory() {
         return albumCategory;

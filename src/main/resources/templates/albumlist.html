@@ -25,12 +25,11 @@
 
                 <tr th:each="album:${albums}">
                     <td><img src="#" alt="image"/></td>
-                    <td th:text="${album.albumName}"></td>
                     <td th:text="${album.albumTitle}"></td>
                     <td th:text="${album.albumCategory}"></td>
                     <td th:text="${album.albumCondition}"></td>
                     <td th:text="${album.albumPrice}"> USD</td>
-                    <td><a th:href="@{/viewAlbum}"><span class="glyphicon glyphicon-info-sign"></span></a>Detail</td>
+                    <td><a th:href="@{/detail_album/{id}(id=${album.id})}"><span class="glyphicon glyphicon-info-sign"></span></a>Detail</td>
                 </tr>
 
             </tbody>

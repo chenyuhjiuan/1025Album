@@ -7,5 +7,13 @@ import java.util.List;
 
 public interface AlbumRepository extends CrudRepository<Album,Long> {
     //List<Album> findByName(String name);
-    List<Album> findAlbumById(Long id);
+  //  List<Album> findAlbumById(Long id);
+
+    //void addAlbum(Album album);
+
+    //Album getAlbumById(Long id);
+
+    //List<Album> getAllAlbums();
+
+    //void deleteAlbum(Long id);
 }

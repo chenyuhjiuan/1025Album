@@ -1,28 +1,24 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.AlbumDAO;
+
 import com.example.demo.model.Album;
 import com.example.demo.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.IOException;
+import javax.validation.Valid;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class HomeController {
     @Autowired
     AlbumRepository albumRepository;
 
-    private AlbumDAO albumDAO= new AlbumDAO();
 
     private Path path;
 
@@ -32,26 +28,21 @@ public class HomeController {
     }
 
     @RequestMapping("/albumlist")
-    public String getAlbums(Model model, Album album) {
-        List<Album> albums = albumDAO.getAlbumList();
-        model.addAttribute("albums",albums);
-        //albumRepository.save(album);
-       // model.addAttribute("albums",albumRepository.findAll());
+    public String getAlbums(Model model) {
 
-
-        //model.addAttribute("albums", albums);
+        model.addAttribute("albums", albumRepository.findAll());
 
         return "albumlist";
     }
 
-    @RequestMapping("/viewAlbum")
-    public String viewAlbum(Long id, Model model) throws IOException {
+    @RequestMapping("/admin/albumInventory/detail_album/{id}")
 
-        //model.addAttribute("album", albumRepository.findById(id).get());
-        Album album = albumDAO.getAlbumById(id);
-        model.addAttribute(album);
+    public String showEmployee(@PathVariable("id") long id, Model model){
 
-        return "viewAlbum";
+        model.addAttribute("album", albumRepository.findById(id).get());
+
+        return "showalbum";
+
     }
 
     /*@RequestMapping("/test")
@@ -62,28 +53,46 @@ public class HomeController {
         return "admin";
     }
 
-    @RequestMapping("/admin/productInventory")
-    public String productInventory(Model model) {
-        List<Product> products = productDao.getAllProducts();
-        model.addAttribute("products", products);
+   @RequestMapping("/admin/albumInventory")
+    public String albumInventory(Model model) {
 
-        return "productInventory";
+        model.addAttribute("albums", albumRepository.findAll());
+
+        return "albumInventory";
     }
 
 
-    @RequestMapping("/admin/productInventory/addProduct")
-    public String addProduct(Model model) {
-        Product product = new Product();
-        product.setProductCategory("instrument");
-        product.setProductCondition("new");
-        product.setProductStatus("active");
+   @RequestMapping("/admin/albumInventory/addAlbum")
+    public String addAlbum(Model model) {
+        Album album = new Album();
+        album.setAlbumCategory("instrument");
+        album.setAlbumCondition("new");
+        album.setAlbumStatus("active");
 
-        model.addAttribute("product", product);
+        model.addAttribute("album", album);
 
-        return "addProduct";
+        return "addAlbum";
     }
 
-    @RequestMapping(value = "/admin/productInventory/addProduct", method = RequestMethod.POST)
+    @PostMapping("/admin/albumInventory/addAlbum")
+    public String addAlbumPost(@Valid Album album, BindingResult result){
+        if(result.hasErrors()){
+            return "addAlbum";
+        }
+        albumRepository.save(album);
+        return "redirect:/admin/albumInventory";
+    }
+
+    @RequestMapping("/admin/albumInventory/delete_album/{id}")
+
+    public String delAlbum(@PathVariable("id") long id) {
+
+        albumRepository.deleteById(id);
+
+        return "redirect:/admin/albumInventory";
+    }
+
+     /*@RequestMapping(value = "/admin/productInventory/addProduct", method = RequestMethod.POST)
     public String addProductPost(@ModelAttribute("product") Product product, HttpServletRequest request) {
         productDao.addProduct(product);
 
@@ -121,5 +130,5 @@ public class HomeController {
         productDao.deleteProduct(id);
 
         return "redirect:/admin/productInventory";
-    }
+    }*/
 }

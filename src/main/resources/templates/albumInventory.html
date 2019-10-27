@@ -1,0 +1,39 @@
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:replace="base::head-head"></div>
+
+
+
+
+<div class="container-wrapper">
+    <div class="container">
+        <div class="page-header">
+            <h1>Product Inventory Page</h1>
+
+            <p class="lead">This is the album inventory page!</p>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr class="bg-success">
+                <th>Photo Thumb</th>
+                <th>Album Title</th>
+                <th>Category</th>
+                <th>Condition</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr th:each="album:${albums}">
+                <td><img src="#" alt="image"/></td>
+                <td th:text="${album.albumTitle}"></td>
+                <td th:text="${album.albumCategory}"></td>
+                <td th:text="${album.albumCondition}"></td>
+                <td th:text="${album.albumPrice}"> USD</td>
+                <td><a th:href="@{/admin/albumInventory/detail_album/{id}(id=${album.id})}"><span class="glyphicon glyphicon-info-sign"></span>Detail</a></td>
+                <td><a th:href="@{/admin/albumInventory/delete_album/{id}(id=${album.id})}" class="btn btn-primary btn-lg" role="button">Delete</a></td>
+            </tr>
+        </table>
+
+        <a href="/admin/albumInventory/addAlbum" class="btn btn-primary">Add Product</a>
+
