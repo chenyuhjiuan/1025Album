@@ -27,13 +27,13 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping("/albumlist")
+  /*  @RequestMapping("/albumlist")
     public String getAlbums(Model model) {
 
         model.addAttribute("albums", albumRepository.findAll());
 
         return "albumlist";
-    }
+    }*/
 
     @RequestMapping("/admin/albumInventory/detail_album/{id}")
 
@@ -45,8 +45,6 @@ public class HomeController {
 
     }
 
-    /*@RequestMapping("/test")
-    public String test(){return "test";}*/
 
     @RequestMapping("/admin")
     public String adminPage() {
@@ -92,43 +90,5 @@ public class HomeController {
         return "redirect:/admin/albumInventory";
     }
 
-     /*@RequestMapping(value = "/admin/productInventory/addProduct", method = RequestMethod.POST)
-    public String addProductPost(@ModelAttribute("product") Product product, HttpServletRequest request) {
-        productDao.addProduct(product);
 
-        MultipartFile productImage = product.getProductImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\"+product.getProductId()+".png");
-
-        if (productImage != null && !productImage.isEmpty()) {
-            try {
-                productImage.transferTo(new File(path.toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new RuntimeException("Product image saving failed", e);
-            }
-        }
-
-        return "redirect:/admin/productInventory";
-    }
-
-
-    @RequestMapping("/admin/productInventory/deleteProduct/{id}")
-    public String deleteProduct(@PathVariable String id, Model model, HttpServletRequest request) {
-
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\"+id+".png");
-
-        if (Files.exists(path)) {
-            try {
-                Files.delete(path);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        productDao.deleteProduct(id);
-
-        return "redirect:/admin/productInventory";
-    }*/
 }
